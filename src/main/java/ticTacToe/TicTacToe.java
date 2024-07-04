@@ -21,28 +21,48 @@ public class TicTacToe {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        while (!hasWinner() && !board.isFull()) {
-            board.print();
-            System.out.println("Current Player: " + currentPlayer.getMarker());
-            System.out.print("row (0-2): ");
-            int row = scanner.nextInt();
-            System.out.print("column (0-2): ");
-            int col = scanner.nextInt();
-            if (board.isCellEmpty(row, col)) {
-                board.place(row, col, currentPlayer.getMarker());
-                if (hasWinner()) {
-                    board.print();
-                    System.out.println("Player " + currentPlayer.getMarker() + " wins!");
-                    return;
+        boolean playAgain;
+
+        do {
+            board.clear();
+            currentPlayer = player1;
+            playAgain = false;
+
+            while (!hasWinner() && !board.isFull()) {
+                board.print();
+                System.out.println("Current Player: " + currentPlayer.getMarker());
+                System.out.print("row (0-2): ");
+                int row = scanner.nextInt();
+                System.out.print("column (0-2): ");
+                int col = scanner.nextInt();
+
+                if (board.isCellEmpty(row, col)) {
+                    board.place(row, col, currentPlayer.getMarker());
+                    if (hasWinner()) {
+                        board.print();
+                        System.out.println("Player " + currentPlayer.getMarker() + " wins!");
+                        break;
+                    }
+                    switchCurrentPlayer();
+                } else {
+                    System.out.println("Cell is not empty, try again.");
                 }
-                switchCurrentPlayer();
-            } else {
-                System.out.println("Cell is not empty, try again.");
             }
-        }
-        board.print();
-        System.out.println("Game Over! \nGame ended in a Draw!");
+
+            if (!hasWinner() && board.isFull()) {
+                board.print();
+                System.out.println("It's a draw!");
+            }
+
+            System.out.print("Do you want to play again? (yes/no): ");
+            String response = scanner.next();
+            playAgain = response.equalsIgnoreCase("yes");
+
+        } while (playAgain);
+
+        System.out.println("Thank you for playing!");
     }
+
 
     public void switchCurrentPlayer() {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
