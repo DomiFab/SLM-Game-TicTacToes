@@ -20,7 +20,7 @@ public class Board {
             cells[x][y] = marker;
         }
     }
-    
+
     public boolean isFull() {
         for (char[] row : cells) {
             for (char cell : row) {
@@ -38,7 +38,17 @@ public class Board {
         }
     }
 
-    //TODO: public void print() {}
+    public void print() {
+        System.out.println("▁▁▁▁▁▁");
+        for (char[] row : cells) {
+            System.out.print("|");
+            for (char cell : row) {
+                System.out.print(cell + "|");
+            }
+            System.out.println();
+        }
+        System.out.println("▔▔▔▔");
+    }
 
     public char[][] getCells() {
         return cells;

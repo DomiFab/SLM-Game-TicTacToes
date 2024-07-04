@@ -22,7 +22,7 @@ public class TicTacToe {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         while (/*!hasWinner() &&*/ !board.isFull()) {
-            //TODO: Current Board State board.print();
+            board.print();
             System.out.println("Current Player: " + currentPlayer.getMarker());
             System.out.print("row (0-2): ");
             int row = scanner.nextInt();
@@ -31,7 +31,7 @@ public class TicTacToe {
             if (board.isCellEmpty(row, col)) {
                 board.place(row, col, currentPlayer.getMarker());
                 if (/*hasWinner()*/true) {
-                    //board.print();
+                    board.print();
                     System.out.println("Player " + currentPlayer.getMarker() + " wins!");
                     return;
                 }
@@ -40,7 +40,7 @@ public class TicTacToe {
                 System.out.println("Cell is not empty, try again.");
             }
         }
-        //board.print();
+        board.print();
         System.out.println("Game Over! \nGame ended in a Draw!");
     }
 
