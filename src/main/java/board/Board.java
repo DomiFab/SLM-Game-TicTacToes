@@ -11,10 +11,16 @@ public class Board {
         clear();
     }
 
-    //TODO: public boolean isCellEmpty(int x, int y) {}
+    public boolean isCellEmpty(int x, int y) {
+        return cells[x][y] == ' ';
+    }
 
-    //TODO: public void place(int x, int y, char marker) {}
-
+    public void place(int x, int y, char marker) {
+        if (isCellEmpty(x, y)) {
+            cells[x][y] = marker;
+        }
+    }
+    
     public boolean isFull() {
         for (char[] row : cells) {
             for (char cell : row) {

@@ -28,7 +28,17 @@ public class TicTacToe {
             int row = scanner.nextInt();
             System.out.print("column (0-2): ");
             int col = scanner.nextInt();
-            //TODO: Choose Square
+            if (board.isCellEmpty(row, col)) {
+                board.place(row, col, currentPlayer.getMarker());
+                if (/*hasWinner()*/true) {
+                    //board.print();
+                    System.out.println("Player " + currentPlayer.getMarker() + " wins!");
+                    return;
+                }
+                switchCurrentPlayer();
+            } else {
+                System.out.println("Cell is not empty, try again.");
+            }
         }
         //board.print();
         System.out.println("Game Over! \nGame ended in a Draw!");
